@@ -58,7 +58,8 @@ deployment:
     - |
       if ! command -v node &> /dev/null; then
         echo "Node.js not found. Installing Node.js..."
-        curl -fsSL https://nodejs.org/dist/latest/$(curl -fsSL https://nodejs.org/dist/latest/SHASUMS256.txt | awk -F '[ ]' '/linux-x64.tar.xz/ { print $2 }')/node-$(curl -fsSL https://nodejs.org/dist/latest/SHASUMS256.txt | awk -F '[ ]' '/linux-x64.tar.xz/ { print $1 }').tar.xz | tar -xJ -C /usr/local --strip-components 1
+        curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+        yum install -y nodejs
       fi
 
     # Set up Vue.js/NPM assets
