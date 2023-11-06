@@ -20,64 +20,52 @@ class WidgetPackingHelper
     // Function to find the optimal packs for a given order size
     private static function findOptimalPacks($orderSize, $packSizes)
     {
-        // If the order size is zero or negative, no packs are needed
         if ($orderSize <= 0) {
             return [];
         }
 
-        // Initialize an array to store the individual packs needed to fulfill the order
         $packs = [];
-
-        // Initialize a variable to keep track of the remaining widgets in the order
         $remainingSize = $orderSize;
 
-        // Loop through available pack sizes to determine the number of packs needed
+        // Iterating through available pack sizes
         foreach ($packSizes as $packSize) {
-            // While there are enough widgets to fit a complete pack
+            // Try to pack as many widgets as possible with the current pack size
             while ($remainingSize >= $packSize) {
-                // Add the pack size to the list of packs
                 $packs[] = $packSize;
-
-                // Update the remaining widgets in the order
                 $remainingSize -= $packSize;
             }
         }
 
-        // If there are remaining widgets that don't fit in available packs, add the smallest pack size
-        $smallestPack = min($packSizes);
-        $packs[] = $smallestPack;
+        if ($remainingSize > 0) {
+            // If there are remaining widgets, add the smallest available pack size
+            $smallestPack = min($packSizes);
+            $packs[] = $smallestPack;
+        }
 
-        // Call the function to combine smaller packs into larger ones (if optimal)
+        // Combine packs for an efficient solution
         $combinedPacks = self::combinePacks($packs, $packSizes);
 
-        // Return the combined packs
         return $combinedPacks;
     }
 
-    // Function to combine smaller packs into larger ones if it's the most optimal solution
+    // Function to combine packs into an optimal solution
     private static function combinePacks($packs, $packSizes)
     {
-        // Calculate the total number of widgets in the individual packs
         $remainingWidgets = array_reduce($packs, function ($carry, $packSize) {
             return $carry + $packSize;
         }, 0);
 
-        // Initialize an array to store the combined packs
         $combinedPacks = [];
 
-        // Loop through available pack sizes to optimize the packing
+        // Iterating through available pack sizes for combining
         foreach ($packSizes as $packSize) {
-            // While there are enough widgets to fit a complete pack
+            // Combine widgets into packs of the current size
             while ($remainingWidgets >= $packSize) {
-                // Add the larger pack size to the list of combined packs
                 $combinedPacks[] = $packSize;
-
-                // Update the remaining widgets
                 $remainingWidgets -= $packSize;
             }
         }
 
-        // Return the list of combined packs
         return $combinedPacks;
     }
 }

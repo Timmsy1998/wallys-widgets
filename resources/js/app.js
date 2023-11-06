@@ -5,13 +5,14 @@ import { createRouter, createWebHistory } from "vue-router"; // Set up Vue Route
 
 // Import the root Vue component.
 import App from "./components/App.vue";
+import Home from './components/content/Home.vue';
+import OrderForm from "./components/content/OrderForm.vue";
+
 
 // Create a new Vue Router instance.
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    // Define the routes for the application
-  ]
+  routes: [{ path: "/", component: Home }, {path: "/order", component: OrderForm}]
 });
 
 // Create a new Vue app instance and configure it with Vue Router.

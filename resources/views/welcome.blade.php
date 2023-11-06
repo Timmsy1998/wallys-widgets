@@ -9,7 +9,7 @@
     <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     @vite(['resources/js/app.js'])
 </head>
-<body>
+<body style="background-color: #b4b4b4">
     <div id="app"></div>
 </body>
 </html>
