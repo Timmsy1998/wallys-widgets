@@ -58,8 +58,8 @@ deployment:
     - |
       if ! command -v node &> /dev/null; then
         echo "Node.js not found. Installing Node.js..."
-        curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-        sudo apt-get install -y nodejs
+        curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+        apt-get install -y nodejs
       fi
 
     # Set up Vue.js/NPM assets
