@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WidgetPackingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/pack-widgets', 'WidgetPackingController@packWidgets');
+Route::post('/pack-widgets', [WidgetPackingController::class, 'packWidgets'])->name('pack.widgets');
+
 

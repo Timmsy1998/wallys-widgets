@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'pack_sizes' => explode(',', env('PACK_SIZES')),
+
 ];
