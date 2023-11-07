@@ -31,7 +31,6 @@ deployment:
           then
             echo "Removing file: $file" >> "$DEPLOY_LOG"
             rm "$DEPLOY_PATH/$file"
-          then
             echo "Removing Node" >> "$DEPLOY_LOG"
             nvm uninstall 21
           fi
