@@ -31,6 +31,9 @@ deployment:
           then
             echo "Removing file: $file" >> "$DEPLOY_LOG"
             rm "$DEPLOY_PATH/$file"
+          then
+            echo "Removing Node" >> "$DEPLOY_LOG"
+            nvm uninstall 21
           fi
         done
       fi
@@ -60,9 +63,8 @@ deployment:
         echo "Node.js not found. Installing NVM..."
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
         source ~/.nvm/nvm.sh
-        nvm install node
-        nvm use node
-        node --version
+        nvm install 17
+        nvm use 17
       fi
 
     # Set up Vue.js/NPM assets
